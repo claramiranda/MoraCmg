@@ -63,7 +63,7 @@
         android:layout_marginLeft="40dp"
         android:layout_marginTop="40dp"
         android:text="Entrar"
-        android:onClick="validarLogin"
+        android:onClick="onClickLogin"
         />
 
     <TextView

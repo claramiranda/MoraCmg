@@ -8,13 +8,37 @@
     android:gravity="center_horizontal">
 
     <!-- TODO: Mascara redonda na img -->
-    <ImageButton
+    <ImageView
         android:id="@+id/imageButton"
         android:layout_width="150dp"
         android:layout_height="150dp"
-        android:layout_marginTop="30dp"
-        tools:srcCompat="@tools:sample/avatars"
-    />
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="10dp"
+        android:onClick="selecionarFotoUsuario"
+        android:src="@drawable/user"
+       />
+
+    <!--<android.support.constraint.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:gravity="center_horizontal"
+        android:layout_height="wrap_content">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/imagemUsuario"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            app:layout_constraintBottom_toBottomOf="@+id/btnPhotoCadastro"
+            app:layout_constraintEnd_toEndOf="@+id/btnPhotoCadastro"
+            app:layout_constraintTop_toTopOf="@+id/btnPhotoCadastro" />
+
+        <Button
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:background="@drawable/bg_image_button"
+            android:id="@+id/btnPhotoCadastro"
+            android:text="Selecionar foto"/>
+    </android.support.constraint.ConstraintLayout>-->
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -31,9 +55,9 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Roberta Carla da Silva"
+            android:hint="Carla Roberta da Silva"
             android:textAlignment="center"
-            android:id="@+id/edTxtNome"
+            android:id="@+id/edTxtNomeCadastro"
             />
     </LinearLayout>
 
@@ -100,7 +124,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/spinnerCursos"
-            android:prompt="@array/spinner_cursos"
+            android:entries="@array/spinner_cursos"
             />
     </LinearLayout>
 
@@ -112,7 +136,8 @@
         android:layout_marginLeft="40dp"
         android:layout_marginTop="40dp"
         android:text="Cadastrar"
-        android:onClick="cadastrarUsuario"
+        android:onClick="onClickCadastrarUsuario"
+        android:id="@+id/btnCadastrarUsuario"
         />
 
 </LinearLayout>
