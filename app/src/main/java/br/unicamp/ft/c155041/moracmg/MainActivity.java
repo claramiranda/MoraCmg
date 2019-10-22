@@ -7,6 +7,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 
 import androidx.navigation.NavController;
@@ -22,9 +23,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.view.Menu;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
-    boolean usuarioLogado = false;
+    boolean usuarioLogado = true;
 
     private AppBarConfiguration mAppBarConfiguration;
 
@@ -47,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
 
-        if (usuarioLogado == false){
+        if (!usuarioLogado){
             //chama tela de login
             Intent intent = new Intent(MainActivity.this, LoginActivity.class);
             startActivity(intent);
@@ -68,5 +70,36 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_settings) {
+            return true;
+        }
+        if (id == R.id.action_sair) { //Selecao da opção sair no menu lateral
+            Toast toast = Toast.makeText(this,"Pressionou sair",Toast.LENGTH_SHORT);
+            toast.show();
+
+            this.usuarioLogado = false;
+            Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+            startActivity(intent);
+            finish();
+            Log.d("MAIN ACTIVITY", "User logoff");
+
+
+            //FirebaseAuth.getInstance().signOut();
+            //Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+            //startActivity(intent);
+            //finish();
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }
