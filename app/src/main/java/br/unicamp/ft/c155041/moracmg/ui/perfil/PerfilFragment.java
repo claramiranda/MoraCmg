@@ -1,4 +1,4 @@
-package br.unicamp.ft.c155041.moracmg.ui.gallery;
+package br.unicamp.ft.c155041.moracmg.ui.perfil;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,22 +14,16 @@ import androidx.lifecycle.ViewModelProviders;
 
 import br.unicamp.ft.c155041.moracmg.R;
 
-public class GalleryFragment extends Fragment {
+public class PerfilFragment extends Fragment {
 
-    private GalleryViewModel galleryViewModel;
+    private PerfilViewModel perfilViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        galleryViewModel =
-                ViewModelProviders.of(this).get(GalleryViewModel.class);
+        perfilViewModel =
+                ViewModelProviders.of(this).get(PerfilViewModel.class);
         View root = inflater.inflate(R.layout.fragment_perfil, container, false);
-        final TextView textView = root.findViewById(R.id.text_gallery);
-        galleryViewModel.getText().observe(this, new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });
+
         return root;
     }
 }

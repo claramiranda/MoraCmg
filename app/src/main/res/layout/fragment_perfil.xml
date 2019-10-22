@@ -1,19 +1,177 @@
-<?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<ScrollView android:id="@+id/ScrollView01"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <TextView
-        android:id="@+id/text_gallery"
-        android:layout_width="match_parent"
+    <!-- TODO:  refazer esse layout usando contraint layout em cards-->
+
+    <!--LinearLayout do scrollview -->
+    <LinearLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:orientation="vertical"
+        android:layout_margin="10dp"
+        >
+
+        <!-- Img view pra trocar a foto do usuário -->
+        <!-- TODO: Mascara redonda na img -->
+        <ImageView
+            android:contentDescription="Foto do usuario"
+            android:id="@+id/imageButtonPerfil"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="10dp"
+            android:layout_gravity="center_horizontal"
+            android:onClick="selecionarFotoUsuario"
+            android:src="@drawable/user"
+            />
+
+        <!-- TODO: Sessão Informações Pessoais-->
+
+        <!--Sessão Informações Acadêmicas -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Informações Acadêmicas"
+            />
+
+        <!--Separaçao de sessao pra colocar espacamento à esquera -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:orientation="vertical"
+            android:layout_marginBottom="10dp"
+            >
+
+
+            <!--Curso -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/txtCurso"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Curso atual:"
+                    />
+                <Spinner
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/spinnerCursos"
+                    android:entries="@array/spinner_cursos"
+                    />
+            </LinearLayout>
+
+            <!--Ano -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Ano de Ingresso:"
+                    />
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/edtTxtUserAnoIngresso"
+                    android:hint="Ex: 2014"
+                    android:inputType="date"
+                    />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!--Sessão Informações Adicionais -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Informações Adicionais"
+            />
+
+    <!--Separaçao de sessao pra colocar espacamento à esquera -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:orientation="vertical"
+            android:layout_marginBottom="10dp"
+            >
+
+            <!-- Apelido -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:layout_marginBottom="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Apelido:"
+                    />
+
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/edtTxtUserNickname"
+                    android:hint="Como o pessoal te chama?"
+                    />
+            </LinearLayout>
+
+            <!-- Bio -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Biografia:"
+                />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="100dp"
+                android:id="@+id/edtTxtUserBio"
+                android:inputType="textMultiLine"
+                android:hint="Que tal escrever um pouquinho sobre você?"
+                android:layout_marginBottom="5dp"
+                />
+
+            <!-- Moradias Anteriores -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Moradias Anteriores:"
+                android:inputType="textMultiLine"
+                />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="100dp"
+                android:id="@+id/edtTxtUserMoradiasAnteriores"
+                android:inputType="textMultiLine"
+                android:hint="Conta um pouquinho pra gente por onde você já morou"
+                />
+        </LinearLayout>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="40dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="40dp"
+            android:text="Salvar Alterações"
+            android:onClick="onClickSalvarPerfil"
+            android:id="@+id/btnSalvarPerfil"
+            android:layout_marginBottom="40dp"
+            />
+
+
+
+
+        <!--Fecha LinearLayout do scrollview -->
+    </LinearLayout>
+</ScrollView>
