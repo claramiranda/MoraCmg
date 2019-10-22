@@ -108,7 +108,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="horizontal"
-                android:layout_marginBottom="10dp">
+                >
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -121,6 +121,25 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/edtTxtUserNickname"
                     android:hint="Como o pessoal te chama?"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:layout_marginBottom="10dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Cidade Natal"
+                    />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="De onde vem você?"
+                    android:id="@+id/edtTxtUserCidadeNatal"
                     />
             </LinearLayout>
 
@@ -155,6 +174,7 @@
                 android:inputType="textMultiLine"
                 android:hint="Conta um pouquinho pra gente por onde você já morou"
                 />
+
         </LinearLayout>
 
         <Button
