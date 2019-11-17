@@ -40,4 +40,12 @@
     </string-array>
 
 
+
+    <string-array name="spinnerTipoVagas">
+        <item>Ver Todas</item>
+        <item>Temporária</item>
+        <item>Definitiva</item>
+    </string-array>
+
+
 </resources>

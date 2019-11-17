@@ -19,9 +19,9 @@
 
     <fragment
         android:id="@+id/nav_slideshow"
-        android:name="br.unicamp.ft.c155041.moracmg.ui.slideshow.SlideshowFragment"
+        android:name="br.unicamp.ft.c155041.moracmg.ui.buscas.BuscasFragment"
         android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_slideshow" />
+        tools:layout="@layout/fragment_buscas" />
 
     <fragment
         android:id="@+id/nav_tools"
