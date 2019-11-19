@@ -25,61 +25,56 @@ public class LoginActivity extends AppCompatActivity {
 
 
 
+    /*Métodos do Ciclo de Vida*/
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_login);
 
-        // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
 
         edtEmail = findViewById(R.id.edTxtEmailLogin);
         edtSenha = findViewById(R.id.edTxtSenha);
-
     }
 
-    //TODO Implementar login com o firebase
-    //todo ler elementos da interface gráfica
     @Override
     public void onStart() {
         super.onStart();
 
-        // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
         updateUI(currentUser);
     }
 
-    //Metodos Firebase
-    //Change UI according to user data.
-    //todo implementar updateUI
+    /* Métodos Firebase */
     public void  updateUI(FirebaseUser account){
         if(account != null){
-            Toast.makeText(this,"U Signed In successfully",Toast.LENGTH_LONG).show();
+            printLog("updateUI:success uid:" + account.getUid());
             startActivity(new Intent(this,MainActivity.class));
+            finish();
         }else {
-            Toast.makeText(this,"U Didnt signed in",Toast.LENGTH_LONG).show();
+            //printToast("Usuário não cadastrado.");
+            printLog("updateUI:failure");
         }
     }
 
-    public void signIn(){
-        String email = edtEmail.getText().toString();
-        String password = edtSenha.getText().toString();
+    public void signIn(String email, String password){
 
         if (email != null && password != null){
             mAuth.signInWithEmailAndPassword(email, password)
                     .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
+
                             if (task.isSuccessful()) {
                                 // Sign in success, update UI with the signed-in user's information
-                                Log.d(TAG, "signInWithEmail:success");
+                                printLog("signInWithEmail:success");
+
                                 FirebaseUser user = mAuth.getCurrentUser();
                                 updateUI(user);
                             } else {
                                 // If sign in fails, display a message to the user.
-                                Log.w(TAG, "signInWithEmail:failure", task.getException());
-                                Toast.makeText(LoginActivity.this, "Authentication failed.",
-                                        Toast.LENGTH_SHORT).show();
+                                printLog("signInWithEmail:failure" +  task.getException());
+                                printToast("Authentication failed.");
                                 updateUI(null);
                             }
 
@@ -92,27 +87,37 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
-    //Métodos \on Click
-
+    /* Métodos da Classe */
     public void onClickCadastrar(View view){
-        Toast.makeText(getApplicationContext(),"Logged in", Toast.LENGTH_SHORT).show();
+        printLog("onClick:onClickCadastrar");
         Intent intent = new Intent(this, CadastroActivity.class);
         startActivity(intent);
-        Log.d("LOGIN ACTIVITY", "Chama activity cadastro");
+        finish();
     }
 
     public void onClickLogin(View view) {
+        printLog("onClick:onClickLogin");
 
+        String email = edtEmail.getText().toString();
+        String password = edtSenha.getText().toString();
 
-        signIn();
-        /*
-        Toast.makeText(getApplicationContext(),"Logged in", Toast.LENGTH_SHORT).show();
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
-        finish();
-        Log.d("LOGIN ACTIVITY", "User login");
-         */
+        if(email == null){
+            printToast("E-mail não preenchido.");
+        }
+        if(password == null){
+            printToast("Senha não preenchida.");
+        }
+        else{
+            signIn(email,password);
+        }
+    }
 
+    public void printToast(String msg){
+        Toast.makeText(this, msg,Toast.LENGTH_LONG).show();
+    }
+
+    public void printLog(String msg){
+        Log.d(TAG, msg);
     }
 
 

@@ -28,7 +28,7 @@ import android.view.Menu;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
-
+    public final static String TAG = "MainActivity";
     FirebaseUser user;
 
     private AppBarConfiguration mAppBarConfiguration;
@@ -41,8 +41,6 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow,
                 R.id.nav_tools, R.id.nav_share, R.id.nav_send)
@@ -52,21 +50,21 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
 
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        if (user != null ){
-            Log.d("MAIN ACTIVITY", "user logado no firebase");
-            String email = user.getEmail();
+        //Meu codigo começa aqui:
 
-        }
-        /*
-        if (!usuarioLogado){
-            //chama tela de login
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if(user == null){
+            Log.d(TAG, "user.getInstance:failure");
+            printToast("Por favor faça login.");
             Intent intent = new Intent(MainActivity.this, LoginActivity.class);
             startActivity(intent);
             finish();
-            Log.d("MAIN ACTIVITY", "User não logado");
-        }*/
-
+        }
+        if (user != null ){
+            Log.d(TAG, "user.getInstance:successful");
+            String email = user.getEmail();
+            printToast(email);
+        }
     }
 
     @Override
@@ -84,6 +82,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
+    //Metodo que controla o menu do canto superior direito
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
@@ -95,23 +94,23 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
         if (id == R.id.action_sair) { //Selecao da opção sair no menu lateral
-            Toast toast = Toast.makeText(this,"Pressionou sair",Toast.LENGTH_SHORT);
-            toast.show();
+            //printToast("Pressionou sair");
+            Log.d(TAG,"onOptionsItemSelected:action_sair");
 
-            //this.usuarioLogado = false;
             FirebaseAuth.getInstance().signOut();
+            Log.d(TAG,"FirebaseAuth:signOut");
+
             Intent intent = new Intent(MainActivity.this, LoginActivity.class);
             startActivity(intent);
             finish();
-            Log.d("MAIN ACTIVITY", "User logoff");
-
-
-            //FirebaseAuth.getInstance().signOut();
-            //Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-            //startActivity(intent);
-            //finish();
+            Log.d(TAG, "starting:LoginActivity");
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void printToast(String msg){
+        Toast.makeText(this, msg,Toast.LENGTH_LONG).show();
+
     }
 }

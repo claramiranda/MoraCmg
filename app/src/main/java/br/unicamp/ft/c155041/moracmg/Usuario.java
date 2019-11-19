@@ -1,9 +1,12 @@
 package br.unicamp.ft.c155041.moracmg;
 
 import android.content.Context;
+import android.util.Log;
 import android.widget.Toast;
 
 public class Usuario {
+    private final static String TAG = "UsuarioClass";
+
     private String nome;
     private String email;
     private String ra;
@@ -11,16 +14,27 @@ public class Usuario {
     private String senha;
 
 
+    /* Construtores */
+    //Todo construtor completo
 
-    public Usuario(String nome, String email, String curso) {
-        this.nome = nome;
+    public Usuario(String nome, String email, String senha, String curso) {
+
         if (this.validaEmailDAC(email)){
+            Log.d(TAG, "validaEmailDAC:successfull");
             this.email = email;
         }
+        else{
+            Log.d(TAG, "validaEmailDAC:failure");
+            this.email = null;
+        }
+
+        this.nome = nome;
         this.curso = curso;
+        this.senha = senha;
     }
 
-    /*Metodos da classe*/
+    /*Metodos de validação da classe*/
+    //TODO método de cálculo/validação do RA do usuário através do email
 
     boolean validaEmailDAC(String email){
         boolean isValid = false;
@@ -28,7 +42,6 @@ public class Usuario {
         if (email.contains("@dac.unicamp.br")){
             isValid = true;
         }
-
         return isValid;
     }
 
