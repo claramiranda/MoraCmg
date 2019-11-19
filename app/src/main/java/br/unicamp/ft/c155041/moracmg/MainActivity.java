@@ -16,6 +16,8 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import androidx.drawerlayout.widget.DrawerLayout;
 
@@ -26,7 +28,8 @@ import android.view.Menu;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
-    boolean usuarioLogado = true;
+
+    FirebaseUser user;
 
     private AppBarConfiguration mAppBarConfiguration;
 
@@ -49,13 +52,21 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
 
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null ){
+            Log.d("MAIN ACTIVITY", "user logado no firebase");
+            String email = user.getEmail();
+
+        }
+        /*
         if (!usuarioLogado){
             //chama tela de login
             Intent intent = new Intent(MainActivity.this, LoginActivity.class);
             startActivity(intent);
             finish();
             Log.d("MAIN ACTIVITY", "User não logado");
-        }
+        }*/
+
     }
 
     @Override
@@ -87,7 +98,8 @@ public class MainActivity extends AppCompatActivity {
             Toast toast = Toast.makeText(this,"Pressionou sair",Toast.LENGTH_SHORT);
             toast.show();
 
-            this.usuarioLogado = false;
+            //this.usuarioLogado = false;
+            FirebaseAuth.getInstance().signOut();
             Intent intent = new Intent(MainActivity.this, LoginActivity.class);
             startActivity(intent);
             finish();

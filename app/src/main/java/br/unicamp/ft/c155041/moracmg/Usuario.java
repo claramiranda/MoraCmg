@@ -8,6 +8,7 @@ public class Usuario {
     private String email;
     private String ra;
     private String curso;
+    private String senha;
 
 
 
@@ -64,5 +65,13 @@ public class Usuario {
 
     public void setCurso(String curso) {
         this.curso = curso;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
     }
 }

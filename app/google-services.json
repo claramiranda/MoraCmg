@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "233694672295",
+    "firebase_url": "https://projeto-moracmg.firebaseio.com",
+    "project_id": "projeto-moracmg",
+    "storage_bucket": "projeto-moracmg.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:233694672295:android:4460e6edb1c95a2ded7282",
+        "android_client_info": {
+          "package_name": "br.unicamp.ft.c155041.moracmg"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "233694672295-ke85u2dkvi5cbpjgvhoaoco67ljs5t2o.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "br.unicamp.ft.c155041.moracmg",
+            "certificate_hash": "becb260d0a9abdc073ee0380681a532c1c812fa8"
+          }
+        },
+        {
+          "client_id": "233694672295-v9fphcl1b0vn4ck6l27fi5aqrorlm1le.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDg-tF8HLGn7GkWtn51Y1QgnzarEGpp1x8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "233694672295-v9fphcl1b0vn4ck6l27fi5aqrorlm1le.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
