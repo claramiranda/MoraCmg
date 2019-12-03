@@ -3,9 +3,6 @@ package br.unicamp.ft.c155041.moracmg;
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
-
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -25,13 +22,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.view.Menu;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     public final static String TAG = "MainActivity";
+
     FirebaseUser user;
 
     private AppBarConfiguration mAppBarConfiguration;
+    private TextView text_home;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(navigationView, navController);
 
         //Meu codigo começa aqui:
-
+        text_home = findViewById(R.id.text_home);
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if(user == null){
             Log.d(TAG, "user.getInstance:failure");
@@ -62,8 +62,7 @@ public class MainActivity extends AppCompatActivity {
         }
         if (user != null ){
             Log.d(TAG, "user.getInstance:successful");
-            String email = user.getEmail();
-            printToast(email);
+            //text_home.setText(user.getEmail());
         }
     }
 

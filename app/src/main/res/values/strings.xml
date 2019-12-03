@@ -27,6 +27,15 @@
     <string name="dialog_title">titulo do alerta</string>
     <string name="dialog_message">alert mensagens</string>
 
+
+    <string-array name="spinner_generos">
+        <item>Outro</item>
+        <item>Masculino</item>
+        <item>Feminino</item>
+        <item>Transgenero</item>
+        <item>Prefiro não dizer</item>
+    </string-array>
+
     <!-- TODO: Add cursos da FCA -->
     <string-array name="spinner_cursos">
         <item>Análise de Sistemas</item>
