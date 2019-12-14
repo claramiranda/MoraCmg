@@ -49,73 +49,85 @@ public class PerfilFragment extends Fragment {
     FirebaseFirestore db;
     Map<String, Object> userDB = new HashMap<>();
 
-
-
     //TODO fazer os role da foto no storage
-
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         perfilViewModel =
                 ViewModelProviders.of(this).get(PerfilViewModel.class);
         View view = inflater.inflate(R.layout.fragment_perfil, container, false);
 
-        //TODO prin, não esquece de colocar os listener de spinner aqui ta bom?
+
         spinnerCurso = view.findViewById(R.id.spinnerCursos);
         spinnerGenero = view.findViewById(R.id.spinnerGenero);
         txtDtNascimento = view.findViewById(R.id.edtTxtDtNascimento);
-        txtAno= view.findViewById(R.id.edtTxtUserAnoIngresso);
+       // txtAno= view.findViewById(R.id.edtTxtUserAnoIngresso);
         txtApelido = view.findViewById(R.id.edtTxtUserNickname);
         txtCidadeNatal = view.findViewById(R.id.edtTxtUserCidadeNatal);
         txtBiografia = view.findViewById(R.id.edtTxtUserBio);
         txtMoradiasAnteriores = view.findViewById(R.id.edtTxtUserMoradiasAnteriores);
         btnSalvar = view.findViewById(R.id.btnSalvarPerfil);
 
-        mAuth = FirebaseAuth.getInstance();
+        /*mAuth = FirebaseAuth.getInstance();
         uuid = mAuth.getUid();
         db = FirebaseFirestore.getInstance();
+*/
+        btnSalvar.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                BotaoSalvarUsuario(v);
+            }
+        });
 
         return view;
     }
 
-    public void onClickSalvarPerfil (View view){
+    public void BotaoSalvarUsuario(View view){
+        DocumentReference userRef = db.collection("users").document(uuid);
+
         String curso = spinnerCurso.getSelectedItem().toString();
             if (curso != null){
                 userDB.put("curso",curso);
+                userRef.update(userDB);
             }
 
         String genero = spinnerGenero.getSelectedItem().toString();
             if (genero != null){
                 userDB.put("genero",genero);
+                userRef.update(userDB);
             }
-            //Todo colocar um tipo de campo melhor aqui.... sepa até um outro spinner resolve, texto é muito aberto
-            //PErgunta essa fita pro Ulisses, ele vai adorar te ajduar com isso
-        String ano = txtAno.getText().toString();
+
+        /*String ano = txtAno.getText().toString();
         if (ano != null){
             userDB.put("ano",ano);
-        }
+            userRef.update(userDB);
+        }*/
 
         String apelido = txtApelido.getText().toString();
         if (apelido != null){
-            userDB.put("apelido,",apelido);
+            userDB.put("apelido",apelido);
+            userRef.update(userDB);
         }
 
         String cidade = txtCidadeNatal.getText().toString();
         if (cidade != null){
-            userDB.put("cidade,",cidade);
+            userDB.put("cidade",cidade);
+            userRef.update(userDB);
         }
         String bio = txtBiografia.getText().toString();
         if (bio != null){
-            userDB.put("bio,",bio);
+            userDB.put("bio",bio);
+            userRef.update(userDB);
         }
         String moradias = txtMoradiasAnteriores.getText().toString();
         if (moradias != null){
-            userDB.put("moradias,",moradias);
+            userDB.put("moradias",moradias);
+            userRef.update(userDB);
         }
 
-        DocumentReference userRef = db.collection("users").document(uuid);
-
-        db.collection("users").document(uuid)
-                .set(userDB)
+        //db.collection("users").document(uuid).set(userDB)
+        // TODO tem que trocar esse set por merge
+        /*db.collection("users").document(uuid).set(userDB)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
@@ -127,7 +139,7 @@ public class PerfilFragment extends Fragment {
                     public void onFailure(@NonNull Exception e) {
                         Log.w(TAG, "Error writing document", e);
                     }
-                });
+                });*/
 
         // Set the "isCapital" field of the city 'DC'
         /*
@@ -144,8 +156,6 @@ public class PerfilFragment extends Fragment {
                         Log.w(TAG, "Error updating document", e);
                     }
                 });*/
-
-
     }
 
 }

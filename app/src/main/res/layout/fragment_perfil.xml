@@ -33,10 +33,12 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Informações Acadêmicas"
+            android:text="Informações Pessoais"
             />
 
         <!--Separaçao de sessao pra colocar espacamento à esquera -->
+
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -45,25 +47,36 @@
             android:layout_marginBottom="10dp"
             >
 
-
-            <!--Curso -->
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
+            <!-- Nome -->
                 <TextView
-                    android:id="@+id/txtCurso"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Curso atual:"
+                    android:text="Nome Completo:"
                     />
-                <Spinner
+
+                <EditText
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/spinnerCursos"
-                    android:entries="@array/spinner_cursos"
+                    android:id="@+id/edtTxtUserNome"
+                    android:hint="ex: Maria Aparecida dos Santos"
                     />
-            </LinearLayout>
+
+            <!-- Apelido -->
+                    <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Apelido:"
+                    />
+
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/edtTxtUserNickname"
+                    android:hint="Como o pessoal te chama?"
+                    />
+
+
+
 
             <!--Genero -->
             <LinearLayout
@@ -104,6 +117,44 @@
                     />
             </LinearLayout>
 
+
+
+        </LinearLayout>
+
+        <!--Sessão Informações Acadêmicas -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Informações Acadêmicas"
+            />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:orientation="vertical"
+            android:layout_marginBottom="10dp"
+            >
+
+
+            <!--Curso -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/txtCurso"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Curso atual:"
+                    />
+                <Spinner
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/spinnerCursos"
+                    android:entries="@array/spinner_cursos"
+                    />
+            </LinearLayout>
+
             <!--Ano -->
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -114,16 +165,17 @@
                     android:layout_height="wrap_content"
                     android:text="Ano de Ingresso:"
                     />
-                <EditText
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/edtTxtUserAnoIngresso"
-                    android:hint="Ex: 2014"
-                    android:inputType="date"
-                    />
+
+                    <Spinner
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/spinnerAno"
+                        android:entries="@array/spinnerAno"/>
+
             </LinearLayout>
 
         </LinearLayout>
+
 
         <!--Sessão Informações Adicionais -->
         <TextView
@@ -141,45 +193,6 @@
             android:layout_marginBottom="10dp"
             >
 
-            <!-- Apelido -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal"
-                >
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Apelido:"
-                    />
-
-                <EditText
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/edtTxtUserNickname"
-                    android:hint="Como o pessoal te chama?"
-                    />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal"
-                android:layout_marginBottom="10dp">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Cidade Natal"
-                    />
-
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="De onde vem você?"
-                    android:id="@+id/edtTxtUserCidadeNatal"
-                    />
-            </LinearLayout>
 
             <!-- Bio -->
             <TextView
@@ -188,14 +201,15 @@
                 android:text="Biografia:"
                 />
 
+
             <EditText
+                android:id="@+id/edtTxtUserBio"
                 android:layout_width="wrap_content"
                 android:layout_height="100dp"
-                android:id="@+id/edtTxtUserBio"
-                android:inputType="textMultiLine"
-                android:hint="Que tal escrever um pouquinho sobre você?"
                 android:layout_marginBottom="5dp"
-                />
+                android:hint="Que tal escrever um pouquinho sobre você?"
+                android:inputType="textMultiLine" />
+
 
             <!-- Moradias Anteriores -->
             <TextView
@@ -206,29 +220,38 @@
                 />
 
             <EditText
+                android:id="@+id/edtTxtUserMoradiasAnteriores"
                 android:layout_width="wrap_content"
                 android:layout_height="100dp"
-                android:id="@+id/edtTxtUserMoradiasAnteriores"
-                android:inputType="textMultiLine"
-                android:hint="Conta um pouquinho pra gente por onde você já morou"
+                android:hint="Já morou em rep? Dividiu um apê com os amigos? Conta pra gente!"
+                android:inputType="textMultiLine" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cidade de Origem:"
+                />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="De onde vem você?"
+                android:id="@+id/edtTxtUserCidadeNatal"
                 />
 
         </LinearLayout>
 
         <Button
+            android:id="@+id/btnSalvarPerfil"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginRight="40dp"
             android:layout_marginLeft="40dp"
             android:layout_marginTop="40dp"
             android:text="Salvar Alterações"
-            android:onClick="onClickSalvarPerfil"
-            android:id="@+id/btnSalvarPerfil"
             android:layout_marginBottom="40dp"
             />
-
-
-
 
         <!--Fecha LinearLayout do scrollview -->
     </LinearLayout>

@@ -10,21 +10,42 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
 public class Usuario {
     private final static String TAG = "UsuarioClass";
 
+    private int foto;
     private String nome;
     private String email;
     private String ra;
     private String curso;
     private String senha;
-
+    private String genero;
+    private Date dt_nascimento;
+    private int ano_ingresso;
+    private String apelido;
+    private String cidade_natal;
 
     /* Construtores */
     //Todo construtor completo
+
+
+    public Usuario(String email, String senha) {
+
+        if (this.validaEmailDAC(email)){
+            Log.d(TAG, "validaEmailDAC:successfull");
+            this.email = email;
+        }
+        else{
+            Log.d(TAG, "validaEmailDAC:failure");
+            this.email = null;
+        }
+
+        this.senha = senha;
+    }
 
     public Usuario(String nome, String email, String senha, String curso) {
 
@@ -39,7 +60,6 @@ public class Usuario {
 
         this.nome = nome;
         this.curso = curso;
-        this.senha = senha;
     }
 
     /*Metodos de validação da classe*/

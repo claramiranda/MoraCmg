@@ -40,21 +40,41 @@
     <string-array name="spinner_cursos">
         <item>Análise de Sistemas</item>
         <item>Sistemas de Informação</item>
-        <item>Engenharia Ambiental</item>
-        <item>Engenharia Telecomunicações</item>
-        <item>Engenharia Transportes</item>
+        <item>Eng. Ambiental</item>
+        <item>Eng. Telecomunicações</item>
+        <item>Eng. Transportes</item>
         <item>Controle Ambiental</item>
         <item>Construção Civil</item>
-        <item>Pós-Graduação</item>
+        <item>Administração</item>
+        <item>Administração Pública</item>
+        <item>Ciências do Esporte</item>
+        <item>Nutrição</item>
+        <item>Eng. Manufatura</item>
+        <item>Eng. Produção</item>
+        <item>Mestrado</item>
+        <item>Doutorado</item>
+        <item>Especialização</item>
+        <item>Outro</item>
     </string-array>
 
 
 
     <string-array name="spinnerTipoVagas">
-        <item>Ver Todas</item>
-        <item>Temporária</item>
-        <item>Definitiva</item>
-    </string-array>
+    <item>Ver Todas</item>
+    <item>Temporária</item>
+    <item>Definitiva</item>
+</string-array>
 
+    <string-array name="spinnerAno">
+        <item>2020</item>
+        <item>2019</item>
+        <item>2018</item>
+        <item>2017</item>
+        <item>2016</item>
+        <item>2015</item>
+        <item>2014</item>
+        <item>2013</item>
+        <item>outro</item>
+    </string-array>
 
 </resources>
