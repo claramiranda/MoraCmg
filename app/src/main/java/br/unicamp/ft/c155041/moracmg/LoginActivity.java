@@ -18,9 +18,6 @@ import com.google.firebase.auth.FirebaseUser;
 
 
 /*
-    TODO  Verificar se o email foi confirmado antes de autorizar o login
-
-
     TODO Trocar campo de validação do login (de e-mail para usuário DAC)
 * */
 
@@ -50,9 +47,8 @@ public class LoginActivity extends AppCompatActivity {
     public void onStart() {
         super.onStart();
 
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-
-        updateUI(currentUser);
+        //FirebaseUser currentUser = mAuth.getCurrentUser();
+        //updateUI(currentUser);
     }
 
     /* Métodos Firebase */
@@ -67,7 +63,7 @@ public class LoginActivity extends AppCompatActivity {
             }
             else{
                 printToast("E-mail não verificado.");
-                printLog("updateUI:EmailVErifyFail");
+                printLog("updateUI:EmailVerifyFail");
             }
         }else {
             //printToast("Usuário não cadastrado.");
