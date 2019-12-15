@@ -24,10 +24,13 @@ public class Usuario {
     private String curso;
     private String senha;
     private String genero;
-    private Date dt_nascimento;
-    private int ano_ingresso;
+    private String dt_nascimento;
+    private String ano_ingresso;
     private String apelido;
     private String cidade_natal;
+    private String biografia;
+    private String moradias_anteriores;
+
 
     /* Construtores */
     //Todo construtor completo
@@ -45,6 +48,22 @@ public class Usuario {
         }
 
         this.senha = senha;
+    }
+
+    public Usuario(String nome, String email, String curso, String genero,
+                   String dt_nascimento, String ano_ingresso, String apelido, String cidade_natal,
+                   String biografia, String moradias_anteriores) {
+
+        this.nome = nome;
+        this.email = email;
+        this.curso = curso;
+        this.genero = genero;
+        this.dt_nascimento = dt_nascimento;
+        this.ano_ingresso = ano_ingresso;
+        this.apelido = apelido;
+        this.cidade_natal = cidade_natal;
+        this.biografia = biografia;
+        this.moradias_anteriores = moradias_anteriores;
     }
 
     public Usuario(String nome, String email, String senha, String curso) {
@@ -117,5 +136,68 @@ public class Usuario {
         this.senha = senha;
     }
 
+    public String getGenero() {
+        return genero;
+    }
 
+    public void setGenero(String genero) {
+        this.genero = genero;
+
+       }
+
+    public String getApelido() {
+        return apelido;
+    }
+
+    public void setApelido(String apelido) {
+        this.apelido = apelido;
+    }
+
+    public int getFoto() {
+        return foto;
+    }
+
+    public void setFoto(int foto) {
+        this.foto = foto;
+    }
+
+    public String getDt_nascimento() {
+        return dt_nascimento;
+    }
+
+    public void setDt_nascimento(String dt_nascimento) {
+        this.dt_nascimento = dt_nascimento;
+    }
+
+    public String getAno_ingresso() {
+        return ano_ingresso;
+    }
+
+    public void setAno_ingresso(String ano_ingresso) {
+        this.ano_ingresso = ano_ingresso;
+    }
+
+    public String getCidade_natal() {
+        return cidade_natal;
+    }
+
+    public void setCidade_natal(String cidade_natal) {
+        this.cidade_natal = cidade_natal;
+    }
+
+    public String getBiografia() {
+        return biografia;
+    }
+
+    public void setBiografia(String biografia) {
+        this.biografia = biografia;
+    }
+
+    public String getMoradias_anteriores() {
+        return moradias_anteriores;
+    }
+
+    public void setMoradias_anteriores(String moradias_anteriores) {
+        this.moradias_anteriores = moradias_anteriores;
+    }
 }

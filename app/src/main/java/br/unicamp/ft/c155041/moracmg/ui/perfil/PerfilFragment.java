@@ -1,6 +1,7 @@
 package br.unicamp.ft.c155041.moracmg.ui.perfil;
 
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,13 +20,16 @@ import androidx.lifecycle.ViewModelProviders;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
 import java.util.Map;
 
+import br.unicamp.ft.c155041.moracmg.DatabaseHandler;
 import br.unicamp.ft.c155041.moracmg.R;
+import br.unicamp.ft.c155041.moracmg.Usuario;
 
 public class PerfilFragment extends Fragment {
 
@@ -33,21 +37,24 @@ public class PerfilFragment extends Fragment {
 
     public final static String TAG = "PerfilFragment";
 
+    Usuario usuario;
+
     //componentes do Layout
     Spinner spinnerGenero;
     Spinner spinnerCurso;
-    EditText txtAno;
-    EditText txtDtNascimento;
+    Spinner spinnerAno;
+
+    EditText txtNome;
     EditText txtApelido;
-    EditText txtCidadeNatal;
+    EditText txtDtNascimento;
+
     EditText txtBiografia;
     EditText txtMoradiasAnteriores;
+    EditText txtCidadeNatal;
+
     Button btnSalvar;
 
-    private FirebaseAuth mAuth;
-    String uuid;
-    FirebaseFirestore db;
-    Map<String, Object> userDB = new HashMap<>();
+
 
     //TODO fazer os role da foto no storage
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -59,18 +66,17 @@ public class PerfilFragment extends Fragment {
 
         spinnerCurso = view.findViewById(R.id.spinnerCursos);
         spinnerGenero = view.findViewById(R.id.spinnerGenero);
+        spinnerAno = view.findViewById(R.id.spinnerAno);
+
         txtDtNascimento = view.findViewById(R.id.edtTxtDtNascimento);
-       // txtAno= view.findViewById(R.id.edtTxtUserAnoIngresso);
+        txtNome= view.findViewById(R.id.edtTxtUserNome);
         txtApelido = view.findViewById(R.id.edtTxtUserNickname);
+
         txtCidadeNatal = view.findViewById(R.id.edtTxtUserCidadeNatal);
         txtBiografia = view.findViewById(R.id.edtTxtUserBio);
         txtMoradiasAnteriores = view.findViewById(R.id.edtTxtUserMoradiasAnteriores);
-        btnSalvar = view.findViewById(R.id.btnSalvarPerfil);
 
-        /*mAuth = FirebaseAuth.getInstance();
-        uuid = mAuth.getUid();
-        db = FirebaseFirestore.getInstance();
-*/
+        btnSalvar = view.findViewById(R.id.btnSalvarPerfil);
         btnSalvar.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -83,79 +89,67 @@ public class PerfilFragment extends Fragment {
     }
 
     public void BotaoSalvarUsuario(View view){
-        DocumentReference userRef = db.collection("users").document(uuid);
 
         String curso = spinnerCurso.getSelectedItem().toString();
-            if (curso != null){
-                userDB.put("curso",curso);
-                userRef.update(userDB);
-            }
-
         String genero = spinnerGenero.getSelectedItem().toString();
-            if (genero != null){
-                userDB.put("genero",genero);
-                userRef.update(userDB);
-            }
+        String ano = spinnerAno.getSelectedItem().toString();
 
-        /*String ano = txtAno.getText().toString();
-        if (ano != null){
-            userDB.put("ano",ano);
-            userRef.update(userDB);
-        }*/
+        String nome = txtNome.getText().toString();
+        if(TextUtils.isEmpty(nome)) {
+            txtNome.setError("Campo obrigarório não informado.");
+            return;
+        }
 
         String apelido = txtApelido.getText().toString();
-        if (apelido != null){
-            userDB.put("apelido",apelido);
-            userRef.update(userDB);
-        }
+/*        if(TextUtils.isEmpty(apelido)) {
+            //apelido = "Não informado";
+            txtApelido.setError("Não");
+            return;
+        }*/
 
         String cidade = txtCidadeNatal.getText().toString();
-        if (cidade != null){
-            userDB.put("cidade",cidade);
-            userRef.update(userDB);
-        }
+/*        if(TextUtils.isEmpty(cidade)) {
+            cidade = "Não informado";
+        }*/
+
         String bio = txtBiografia.getText().toString();
-        if (bio != null){
-            userDB.put("bio",bio);
-            userRef.update(userDB);
-        }
+/*        if(TextUtils.isEmpty(bio)) {
+            bio = "";
+
+        }*/
+
+
+
         String moradias = txtMoradiasAnteriores.getText().toString();
-        if (moradias != null){
-            userDB.put("moradias",moradias);
-            userRef.update(userDB);
+/*        if(TextUtils.isEmpty(moradias)) {
+            txtMoradiasAnteriores.setError("Campo não informado.");
+            return;
+        }*/
+
+
+        String dt_nascimento = txtDtNascimento.getText().toString();
+        if(TextUtils.isEmpty(dt_nascimento)) {
+            txtDtNascimento.setError("Campo obrigatório não informado.");
+            return;
         }
 
-        //db.collection("users").document(uuid).set(userDB)
-        // TODO tem que trocar esse set por merge
-        /*db.collection("users").document(uuid).set(userDB)
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        Log.d(TAG, "DocumentSnapshot successfully written!");
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.w(TAG, "Error writing document", e);
-                    }
-                });*/
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        String email = user.getEmail();
 
-        // Set the "isCapital" field of the city 'DC'
-        /*
-        userRef.update("capital", true)
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        Log.d(TAG, "DocumentSnapshot successfully updated!");
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.w(TAG, "Error updating document", e);
-                    }
-                });*/
+         usuario = new Usuario(nome, email, curso,  genero,
+                dt_nascimento,  ano,  apelido,  cidade,
+                bio,  moradias);
+
+        DatabaseHandler dbHandler = new DatabaseHandler();
+        dbHandler.saveUserOnDatabase(usuario);
+
+        //Atualizar tela
+        //Valores atuais do campo são setados como Hint
+    }
+
+    public void carregarDadosUsuario(){
+
+
     }
 
 }
