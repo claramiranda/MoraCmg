@@ -149,6 +149,31 @@ public class PerfilFragment extends Fragment {
 
     public void carregarDadosUsuario(){
 
+        if(usuario.getNome() != "" ){
+            txtNome.setText(usuario.getNome());
+        }
+
+        if(usuario.getApelido() != ""){
+            txtApelido.setText(usuario.getApelido());
+        }
+
+        if(usuario.getMoradias_anteriores() != ""){
+            txtMoradiasAnteriores.setText(usuario.getMoradias_anteriores());
+        }
+        txtDtNascimento.setText(usuario.getDt_nascimento());
+
+        if(usuario.getBiografia() != ""){
+            txtBiografia.setText(usuario.getBiografia());
+        }
+
+        if(usuario.getMoradias_anteriores() != ""){
+            txtMoradiasAnteriores.setText(usuario.getMoradias_anteriores());
+        }
+
+        if(usuario.getMoradias_anteriores() != ""){
+            txtMoradiasAnteriores.setText(usuario.getMoradias_anteriores());
+        }
+
 
     }
 

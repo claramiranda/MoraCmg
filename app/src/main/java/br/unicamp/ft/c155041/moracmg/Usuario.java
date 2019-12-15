@@ -36,6 +36,9 @@ public class Usuario {
     //Todo construtor completo
 
 
+    public Usuario() {
+    }
+
     public Usuario(String email, String senha) {
 
         if (this.validaEmailDAC(email)){
