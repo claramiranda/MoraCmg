@@ -54,6 +54,9 @@ public class PerfilFragment extends Fragment {
 
     Button btnSalvar;
 
+    DatabaseHandler dbHandler = new DatabaseHandler();
+    FirebaseAuth mAuth = FirebaseAuth.getInstance();
+    String uuid = mAuth.getUid();
 
 
     //TODO fazer os role da foto no storage
@@ -84,6 +87,8 @@ public class PerfilFragment extends Fragment {
                 BotaoSalvarUsuario(v);
             }
         });
+
+        dbHandler.getUserFromDatabase(uuid);
 
         return view;
     }
@@ -140,38 +145,43 @@ public class PerfilFragment extends Fragment {
                 dt_nascimento,  ano,  apelido,  cidade,
                 bio,  moradias);
 
-        DatabaseHandler dbHandler = new DatabaseHandler();
+
         dbHandler.saveUserOnDatabase(usuario);
 
         //Atualizar tela
         //Valores atuais do campo são setados como Hint
+        dbHandler.getUserFromDatabase(uuid);
+        carregarDadosUsuario();
     }
 
     public void carregarDadosUsuario(){
 
         if(usuario.getNome() != "" ){
-            txtNome.setText(usuario.getNome());
+            //txtNome.setText(usuario.getNome());
+            txtNome.setText("");
+            txtNome.setHint(usuario.getNome());
         }
 
         if(usuario.getApelido() != ""){
-            txtApelido.setText(usuario.getApelido());
+            txtApelido.setText("");
+            txtApelido.setHint(usuario.getApelido());
         }
 
-        if(usuario.getMoradias_anteriores() != ""){
-            txtMoradiasAnteriores.setText(usuario.getMoradias_anteriores());
+        if(usuario.getMoradiasAnteriores() != ""){
+            txtMoradiasAnteriores.setText("");
+            txtMoradiasAnteriores.setHint(usuario.getMoradiasAnteriores());
         }
-        txtDtNascimento.setText(usuario.getDt_nascimento());
+        txtDtNascimento.setText("");
+        txtDtNascimento.setHint(usuario.getDt_nascimento());
 
-        if(usuario.getBiografia() != ""){
-            txtBiografia.setText(usuario.getBiografia());
+        if(usuario.getBio() != ""){
+            txtBiografia.setText("");
+            txtBiografia.setHint(usuario.getBio());
         }
 
-        if(usuario.getMoradias_anteriores() != ""){
-            txtMoradiasAnteriores.setText(usuario.getMoradias_anteriores());
-        }
-
-        if(usuario.getMoradias_anteriores() != ""){
-            txtMoradiasAnteriores.setText(usuario.getMoradias_anteriores());
+        if(usuario.getCidade_natal() != ""){
+            txtCidadeNatal.setText("");
+            txtCidadeNatal.setHint(usuario.getCidade_natal());
         }
 
 

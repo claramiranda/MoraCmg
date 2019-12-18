@@ -10,6 +10,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -20,6 +21,9 @@ import java.util.Map;
 public class DatabaseHandler {
 
     public final static String TAG = "DB_Handler";
+
+    Usuario usuario = new Usuario();
+
     private FirebaseAuth mAuth;
     FirebaseFirestore db;
     Map<String, Object> userDB = new HashMap<>();
@@ -43,9 +47,10 @@ public class DatabaseHandler {
         userDB.put("curso",user.getCurso());
         userDB.put("genero",user.getGenero());
         userDB.put("ano_ingresso",user.getAno_ingresso());
-        userDB.put("biografia",user.getBiografia());
-        userDB.put("moradias_anteriores",user.getMoradias_anteriores());
+        userDB.put("biografia",user.getBio());
+        userDB.put("moradias_anteriores",user.getMoradiasAnteriores());
         userDB.put("cidade_natal",user.getCidade_natal());
+        userDB.put("ra",user.getRa());
 
         db.collection("users").document(uuid)
                 .set(userDB)
@@ -65,24 +70,34 @@ public class DatabaseHandler {
         userRef.update(userDB);
     }
 
-    public Usuario getUserFromDatabase(String uuid){
-        Usuario user = new Usuario();
+    public void getUserFromDatabase(String uuid) {
 
-        db.collection("users")
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            for (QueryDocumentSnapshot document : task.getResult()) {
-                                Log.d(TAG, document.getId() + " => " + document.getData());
-                            }
-                        } else {
-                            Log.w(TAG, "Error getting documents.", task.getException());
-                        }
+        DocumentReference docRef = db.collection("users").document(uuid);
+        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document.exists()) {
+                        Log.d(TAG, "DocumentSnapshot data: " + document.getData());
+
+                        //TODO alimentar atributo usuario
+                        // Certo, como eu como eu faço agora pra ter acesso aos valores de cada campo desse document?
+
+                        //usuario.setRa(document.get("nome"));
+                        //Usuario user = document.toObject(Usuario.class);
+
+                    } else {
+                        Log.d(TAG, "No such document");
                     }
-                });
-        return  user;
-    }
+                } else {
+                    Log.d(TAG, "get failed with ", task.getException());
+                }
+            }
+        });
 
+
+
+        //r
+    }
 }

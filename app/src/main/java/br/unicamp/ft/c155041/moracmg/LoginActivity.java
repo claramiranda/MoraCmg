@@ -19,7 +19,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 /*
     TODO Trocar campo de validação do login (de e-mail para usuário DAC)
-* */
+*/
 
 
 public class LoginActivity extends AppCompatActivity {
@@ -106,7 +106,7 @@ public class LoginActivity extends AppCompatActivity {
         printLog("onClick:onClickCadastrar");
         Intent intent = new Intent(this, CadastroActivity.class);
         startActivity(intent);
-        finish();
+        //finish();
     }
 
     public void onClickLogin(View view) {

@@ -27,14 +27,11 @@ public class Usuario {
     private String dt_nascimento;
     private String ano_ingresso;
     private String apelido;
+    private String bio;
+    private String moradiasAnteriores;
     private String cidade_natal;
-    private String biografia;
-    private String moradias_anteriores;
-
 
     /* Construtores */
-    //Todo construtor completo
-
 
     public Usuario() {
     }
@@ -53,9 +50,25 @@ public class Usuario {
         this.senha = senha;
     }
 
-    public Usuario(String nome, String email, String curso, String genero,
-                   String dt_nascimento, String ano_ingresso, String apelido, String cidade_natal,
-                   String biografia, String moradias_anteriores) {
+    public Usuario(int foto, String nome, String email, String ra, String curso, String senha, String genero,
+                   String dt_nascimento, String ano_ingresso, String apelido, String bio, String moradiasAnteriores, String cidade_natal) {
+        this.foto = foto;
+        this.nome = nome;
+        this.email = email;
+        this.ra = ra;
+        this.curso = curso;
+        this.senha = senha;
+        this.genero = genero;
+        this.dt_nascimento = dt_nascimento;
+        this.ano_ingresso = ano_ingresso;
+        this.apelido = apelido;
+        this.bio = bio;
+        this.moradiasAnteriores = moradiasAnteriores;
+        this.cidade_natal = cidade_natal;
+    }
+
+    public Usuario(String nome, String email, String curso, String genero, String dt_nascimento, String ano_ingresso,
+                   String apelido, String bio, String moradiasAnteriores, String cidade_natal) {
 
         this.nome = nome;
         this.email = email;
@@ -64,29 +77,13 @@ public class Usuario {
         this.dt_nascimento = dt_nascimento;
         this.ano_ingresso = ano_ingresso;
         this.apelido = apelido;
+        this.bio = bio;
+        this.moradiasAnteriores = moradiasAnteriores;
         this.cidade_natal = cidade_natal;
-        this.biografia = biografia;
-        this.moradias_anteriores = moradias_anteriores;
-    }
-
-    public Usuario(String nome, String email, String senha, String curso) {
-
-        if (this.validaEmailDAC(email)){
-            Log.d(TAG, "validaEmailDAC:successfull");
-            this.email = email;
-        }
-        else{
-            Log.d(TAG, "validaEmailDAC:failure");
-            this.email = null;
-        }
-
-        this.nome = nome;
-        this.curso = curso;
+        this.ra = calculaRA();
     }
 
     /*Metodos de validação da classe*/
-    //TODO método de cálculo/validação do RA do usuário através do email
-
     boolean validaEmailDAC(String email){
         boolean isValid = false;
 
@@ -95,7 +92,6 @@ public class Usuario {
         }
         return isValid;
     }
-
 
     /*GETTERS AND SETTERS*/
 
@@ -116,11 +112,33 @@ public class Usuario {
     }
 
     public String getRa() {
-        return ra;
+        return this.ra;
     }
 
     public void setRa(String ra) {
         this.ra = ra;
+    }
+
+    public String calculaRA() {
+
+        String email = getEmail();
+        String[] output = email.split("@");
+        email = output[0];
+        email = email.substring(1);
+        //this.setRa(email);
+        return email;
+        //Toast.makeText(this, email,Toast.LENGTH_LONG).show();
+
+/*
+
+        String[] output = email.split("@");
+        email = output[0];
+
+        output = email.split("0-9");
+        email = output[1];
+        return email;
+*/
+
     }
 
     public String getCurso() {
@@ -145,23 +163,6 @@ public class Usuario {
 
     public void setGenero(String genero) {
         this.genero = genero;
-
-       }
-
-    public String getApelido() {
-        return apelido;
-    }
-
-    public void setApelido(String apelido) {
-        this.apelido = apelido;
-    }
-
-    public int getFoto() {
-        return foto;
-    }
-
-    public void setFoto(int foto) {
-        this.foto = foto;
     }
 
     public String getDt_nascimento() {
@@ -180,27 +181,35 @@ public class Usuario {
         this.ano_ingresso = ano_ingresso;
     }
 
+    public String getApelido() {
+        return apelido;
+    }
+
+    public void setApelido(String apelido) {
+        this.apelido = apelido;
+    }
+
+    public String getBio() {
+        return bio;
+    }
+
+    public void setBio(String bio) {
+        this.bio = bio;
+    }
+
+    public String getMoradiasAnteriores() {
+        return moradiasAnteriores;
+    }
+
+    public void setMoradiasAnteriores(String moradiasAnteriores) {
+        this.moradiasAnteriores = moradiasAnteriores;
+    }
+
     public String getCidade_natal() {
         return cidade_natal;
     }
 
     public void setCidade_natal(String cidade_natal) {
         this.cidade_natal = cidade_natal;
-    }
-
-    public String getBiografia() {
-        return biografia;
-    }
-
-    public void setBiografia(String biografia) {
-        this.biografia = biografia;
-    }
-
-    public String getMoradias_anteriores() {
-        return moradias_anteriores;
-    }
-
-    public void setMoradias_anteriores(String moradias_anteriores) {
-        this.moradias_anteriores = moradias_anteriores;
     }
 }
