@@ -9,23 +9,14 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.TextView;
+import android.widget.Toast;
 
-import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.FirebaseFirestore;
-
-import java.util.HashMap;
-import java.util.Map;
 
 import br.unicamp.ft.c155041.moracmg.DatabaseHandler;
 import br.unicamp.ft.c155041.moracmg.R;
@@ -89,6 +80,18 @@ public class PerfilFragment extends Fragment {
         });
 
         dbHandler.getUserFromDatabase(uuid);
+        usuario = dbHandler.getUsuario();
+
+        if (usuario == null){
+            Log.d(TAG,"usuario nulo");
+            Toast.makeText(getContext(), "Usuario null",Toast.LENGTH_LONG).show();
+        } else
+        {
+            Toast.makeText(getContext(), "Usuário not null",Toast.LENGTH_LONG).show();
+            printUserOnLog(usuario);
+        }
+
+
 
         return view;
     }
@@ -142,9 +145,8 @@ public class PerfilFragment extends Fragment {
         String email = user.getEmail();
 
          usuario = new Usuario(nome, email, curso,  genero,
-                dt_nascimento,  ano,  apelido,  cidade,
-                bio,  moradias);
-
+                dt_nascimento,  ano,  apelido,
+                bio,  moradias, cidade);
 
         dbHandler.saveUserOnDatabase(usuario);
 
@@ -167,16 +169,16 @@ public class PerfilFragment extends Fragment {
             txtApelido.setHint(usuario.getApelido());
         }
 
-        if(usuario.getMoradiasAnteriores() != ""){
+        if(usuario.getMoradias_anteriores() != ""){
             txtMoradiasAnteriores.setText("");
-            txtMoradiasAnteriores.setHint(usuario.getMoradiasAnteriores());
+            txtMoradiasAnteriores.setHint(usuario.getMoradias_anteriores());
         }
         txtDtNascimento.setText("");
         txtDtNascimento.setHint(usuario.getDt_nascimento());
 
-        if(usuario.getBio() != ""){
+        if(usuario.getBiografia() != ""){
             txtBiografia.setText("");
-            txtBiografia.setHint(usuario.getBio());
+            txtBiografia.setHint(usuario.getBiografia());
         }
 
         if(usuario.getCidade_natal() != ""){
@@ -185,6 +187,14 @@ public class PerfilFragment extends Fragment {
         }
 
 
+    }
+
+    public void printUserOnLog(Usuario user){
+        Log.d(TAG, "user.nome=" + user.getNome());
+        Log.d(TAG, "user.curso=" + user.getCurso());
+        Log.d(TAG, "user.bio=" + user.getBiografia());
+        Log.d(TAG, "user.moradias=" + user.getMoradias_anteriores());
+        Log.d(TAG, "user.cidade=" + user.getCidade_natal());
     }
 
 }

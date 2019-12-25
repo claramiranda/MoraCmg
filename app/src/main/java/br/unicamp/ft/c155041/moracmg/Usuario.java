@@ -1,18 +1,6 @@
 package br.unicamp.ft.c155041.moracmg;
 
-import android.content.Context;
 import android.util.Log;
-import android.widget.Toast;
-
-import androidx.annotation.NonNull;
-
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.firestore.FirebaseFirestore;
-
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 
 public class Usuario {
     private final static String TAG = "UsuarioClass";
@@ -27,8 +15,8 @@ public class Usuario {
     private String dt_nascimento;
     private String ano_ingresso;
     private String apelido;
-    private String bio;
-    private String moradiasAnteriores;
+    private String biografia;
+    private String moradias_anteriores;
     private String cidade_natal;
 
     /* Construtores */
@@ -51,7 +39,7 @@ public class Usuario {
     }
 
     public Usuario(int foto, String nome, String email, String ra, String curso, String senha, String genero,
-                   String dt_nascimento, String ano_ingresso, String apelido, String bio, String moradiasAnteriores, String cidade_natal) {
+                   String dt_nascimento, String ano_ingresso, String apelido, String biografia, String moradias_anteriores, String cidade_natal) {
         this.foto = foto;
         this.nome = nome;
         this.email = email;
@@ -62,13 +50,13 @@ public class Usuario {
         this.dt_nascimento = dt_nascimento;
         this.ano_ingresso = ano_ingresso;
         this.apelido = apelido;
-        this.bio = bio;
-        this.moradiasAnteriores = moradiasAnteriores;
+        this.biografia = biografia;
+        this.moradias_anteriores = moradias_anteriores;
         this.cidade_natal = cidade_natal;
     }
 
     public Usuario(String nome, String email, String curso, String genero, String dt_nascimento, String ano_ingresso,
-                   String apelido, String bio, String moradiasAnteriores, String cidade_natal) {
+                   String apelido, String biografia, String moradias_anteriores, String cidade_natal) {
 
         this.nome = nome;
         this.email = email;
@@ -77,8 +65,8 @@ public class Usuario {
         this.dt_nascimento = dt_nascimento;
         this.ano_ingresso = ano_ingresso;
         this.apelido = apelido;
-        this.bio = bio;
-        this.moradiasAnteriores = moradiasAnteriores;
+        this.biografia = biografia;
+        this.moradias_anteriores = moradias_anteriores;
         this.cidade_natal = cidade_natal;
         this.ra = calculaRA();
     }
@@ -189,20 +177,20 @@ public class Usuario {
         this.apelido = apelido;
     }
 
-    public String getBio() {
-        return bio;
+    public String getBiografia() {
+        return biografia;
     }
 
-    public void setBio(String bio) {
-        this.bio = bio;
+    public void setBiografia(String biografia) {
+        this.biografia = biografia;
     }
 
-    public String getMoradiasAnteriores() {
-        return moradiasAnteriores;
+    public String getMoradias_anteriores() {
+        return moradias_anteriores;
     }
 
-    public void setMoradiasAnteriores(String moradiasAnteriores) {
-        this.moradiasAnteriores = moradiasAnteriores;
+    public void setMoradias_anteriores(String moradias_anteriores) {
+        this.moradias_anteriores = moradias_anteriores;
     }
 
     public String getCidade_natal() {
