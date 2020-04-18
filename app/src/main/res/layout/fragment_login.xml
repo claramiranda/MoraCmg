@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!-- TODO: Mascara redonda no logotipo -->
     <ImageView
         android:layout_width="150dp"
         android:layout_height="150dp"
@@ -23,12 +22,13 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="E-mail:"
+            android:text="Usuário:"
             />
+
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="c123456@dac.unicamp.br"
+            android:hint="c123456"
             android:textAlignment="center"
             android:id="@+id/edTxtEmailLogin"
             />

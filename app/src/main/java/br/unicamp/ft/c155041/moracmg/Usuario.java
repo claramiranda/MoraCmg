@@ -36,6 +36,7 @@ public class Usuario {
         }
 
         this.senha = senha;
+        this.ra = calculaRA(this.email);
     }
 
     public Usuario(int foto, String nome, String email, String ra, String curso, String senha, String genero,
@@ -68,7 +69,8 @@ public class Usuario {
         this.biografia = biografia;
         this.moradias_anteriores = moradias_anteriores;
         this.cidade_natal = cidade_natal;
-        this.ra = calculaRA();
+        //this.ra = calculaRA();
+        this.ra = calculaRA(this.email);
     }
 
     /*Metodos de validação da classe*/
@@ -107,25 +109,15 @@ public class Usuario {
         this.ra = ra;
     }
 
-    public String calculaRA() {
+    public String calculaRA(String email) {
 
-        String email = getEmail();
+        //String email = getEmail();
         String[] output = email.split("@");
         email = output[0];
         email = email.substring(1);
         //this.setRa(email);
         return email;
         //Toast.makeText(this, email,Toast.LENGTH_LONG).show();
-
-/*
-
-        String[] output = email.split("@");
-        email = output[0];
-
-        output = email.split("0-9");
-        email = output[1];
-        return email;
-*/
 
     }
 

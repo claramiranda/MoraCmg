@@ -45,6 +45,8 @@ public class CadastroActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
 
+    private DatabaseHandler dbHandler = new DatabaseHandler();
+
 
 
     /* Métodos do Ciclo de Vida */
@@ -57,7 +59,6 @@ public class CadastroActivity extends AppCompatActivity {
         edTxtEmail = findViewById(R.id.edTxtEmailCadastro);
         edTxtSenha = findViewById(R.id.edTxtSenhaCadastro);
         btnCadastrar = findViewById(R.id.btnCadastrarUsuario);
-        //spinner = findViewById(R.id.spinnerCursos);
 
         //dialog initialization
         builder = new AlertDialog.Builder(this);
@@ -78,9 +79,10 @@ public class CadastroActivity extends AppCompatActivity {
     /*Métodos Firebase*/
     public void  updateUI(FirebaseUser account){
         if(account != null){
-
             printLog("updateUI:successfull");
             printToast("Por favor faça login para continuar.");
+
+            dbHandler.saveNewUserOnDatabase(user);
 
             startActivity(new Intent(this,LoginActivity.class));
 
@@ -100,6 +102,7 @@ public class CadastroActivity extends AppCompatActivity {
         String nome = this.user.getNome();
         String email = this.user.getEmail();
         String curso = this.user.getCurso();
+        String ra = this.user.getRa();
 
         String uuid = mAuth.getUid();
         //printToast(uuid);
@@ -109,7 +112,7 @@ public class CadastroActivity extends AppCompatActivity {
         userDB.put("email", email);
         userDB.put("curso", curso);
 
-        db.collection("users").document(uuid)
+        db.collection("users").document(ra)
                 .set(userDB)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
@@ -140,9 +143,6 @@ public class CadastroActivity extends AppCompatActivity {
 
                             updateUI(user);
 
-
-                            //funçao salvar usuario no db
-                            //addUserOnDatabase();
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "createUserWithEmail:failure", task.getException());

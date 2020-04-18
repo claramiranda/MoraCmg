@@ -1,12 +1,325 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:background="@color/colorPrimary"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+
+
+            <!--TODO implementar chamada da galeria/camera no onclick da img-->
+            <ImageView
+                android:id="@+id/imageview_user_photo"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="16dp"
+                android:src="@drawable/avatar2"/>
+
+            <!-- Informações Pessoais-->
+            <androidx.cardview.widget.CardView
+                android:layout_below="@id/imageview_user_photo"
+                android:id="@+id/cv_infos_pessoais"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="10dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:paddingLeft="8dp">
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:padding="8dp"
+                    android:layout_height="match_parent">
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:text="Informações Pessoais"
+                        android:id="@+id/label_infos_pessoais"
+                        android:textSize="15dp"
+                        android:textStyle="bold" />
+
+
+                    <!-- Nome -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Nome Completo:"
+                        android:id="@+id/label_txt_nome"
+                        android:layout_below="@+id/label_infos_pessoais"
+                        />
+
+                    <EditText
+                        android:id="@+id/edtxt_user_nome"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/label_txt_nome" />
+
+
+                    <!-- Apelido -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Apelido:"
+                        android:layout_below="@id/edtxt_user_nome"
+                        android:id="@+id/label_txt_apelido"
+                        />
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/edtxt_user_nickname"
+                        android:hint="Como te chamam"
+                        android:layout_below="@id/label_txt_apelido"
+                        />
+
+                    <!--Genero -->
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:id="@+id/linear_layout_genero"
+                        android:layout_below="@id/edtxt_user_nickname">
+                        <TextView
+                            android:id="@+id/label_txt_genero"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Gênero:"
+                            />
+                        <Spinner
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/spinnerGenero"
+                            android:entries="@array/spinner_generos"
+                            />
+                    </LinearLayout>
+
+
+                    <!--Dt Nascimento -->
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/linear_layout_genero"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Data de Nascimento:"
+                            />
+                        <EditText
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/edtTxtDtNascimento"
+                            android:hint="Ex: 13/09/1995"
+                            android:inputType="date"
+                            />
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
+
+
+            <!-- Informações Acadêmicas -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cv_infos_academicas"
+                android:layout_below="@id/cv_infos_pessoais"
+                android:layout_width="350dp"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="10dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                android:paddingBottom="8dp"
+                android:paddingLeft="8dp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:padding="5dp"
+                        android:layout_height="wrap_content"
+                        android:text="Informações Acadêmicas"
+                        android:textStyle="bold" />
+
+                    <!--Curso-->
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="8dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/txtCurso"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Curso atual:"
+                            />
+                        <Spinner
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/spinnerCursos"
+                            android:entries="@array/spinner_cursos"
+                            />
+                    </LinearLayout>
+
+                    <!--Ano -->
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="8dp"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Ano de Ingresso:"
+                            />
+
+                        <Spinner
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/spinnerAno"
+                            android:entries="@array/spinnerAno"/>
+                    </LinearLayout>
+
+
+
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+
+            <!--Informaçoes Adicionais-->
+            <androidx.cardview.widget.CardView
+                android:layout_width="350dp"
+                app:cardCornerRadius="8dp"
+                android:layout_below="@id/cv_infos_academicas"
+                android:id="@+id/cv_infos_complementares"
+                app:cardElevation="10dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="8dp">
+
+
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:orientation="vertical"
+                    android:layout_marginBottom="10dp"
+                    >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:padding="5dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:text="Informações Complementares"
+                        android:textStyle="bold" />
+
+
+
+                    <!-- Bio -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Biografia:"
+                        />
+
+
+                    <EditText
+                        android:id="@+id/edtTxtUserBio"
+                        android:layout_width="wrap_content"
+                        android:layout_height="100dp"
+                        android:layout_marginBottom="5dp"
+                        android:hint="Que tal escrever um pouquinho sobre você?"
+                        android:inputType="textMultiLine" />
+
+
+                    <!-- Moradias Anteriores -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Moradias Anteriores:"
+                        />
+
+                    <EditText
+                        android:id="@+id/edtTxtUserMoradiasAnteriores"
+                        android:layout_width="wrap_content"
+                        android:layout_height="100dp"
+                        android:hint="Já morou em rep? Dividiu um apê com os amigos? Conta pra gente!"
+                        android:inputType="textMultiLine" />
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Cidade de Origem:"
+                        />
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="De onde vem você?"
+                        android:id="@+id/edtTxtUserCidadeNatal"
+                        />
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <Button
+                android:id="@+id/btn_salvar_perfil_user"
+                android:layout_width="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:text="Salvar Alterações"
+                android:layout_below="@id/cv_infos_complementares"
+                />
+        </LinearLayout>
+    </ScrollView>
+
+
+
+
+</LinearLayout>
+
+
+
+
+<!--
 <ScrollView android:id="@+id/ScrollView01"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <!-- TODO:  refazer esse layout usando contraint layout em cards-->
+    &lt;!&ndash; TODO:  refazer esse layout usando contraint layout em cards&ndash;&gt;
 
-    <!--LinearLayout do scrollview -->
+    &lt;!&ndash;LinearLayout do scrollview &ndash;&gt;
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -14,8 +327,8 @@
         android:layout_margin="10dp"
         >
 
-        <!-- Img view pra trocar a foto do usuário -->
-        <!-- TODO: Mascara redonda na img -->
+        &lt;!&ndash; Img view pra trocar a foto do usuário &ndash;&gt;
+        &lt;!&ndash; TODO: Mascara redonda na img &ndash;&gt;
         <ImageView
             android:contentDescription="Foto do usuario"
             android:id="@+id/imageButtonPerfil"
@@ -28,15 +341,15 @@
             android:src="@drawable/user"
             />
 
-        <!-- TODO: Sessão Informações Pessoais-->
-        <!--Sessão Informações Acadêmicas -->
+        &lt;!&ndash; TODO: Sessão Informações Pessoais&ndash;&gt;
+        &lt;!&ndash;Sessão Informações Acadêmicas &ndash;&gt;
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Informações Pessoais"
             />
 
-        <!--Separaçao de sessao pra colocar espacamento à esquera -->
+        &lt;!&ndash;Separaçao de sessao pra colocar espacamento à esquera &ndash;&gt;
 
 
         <LinearLayout
@@ -47,7 +360,7 @@
             android:layout_marginBottom="10dp"
             >
 
-            <!-- Nome -->
+            &lt;!&ndash; Nome &ndash;&gt;
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -61,7 +374,7 @@
                     android:hint="ex: Maria Aparecida dos Santos"
                     />
 
-            <!-- Apelido -->
+            &lt;!&ndash; Apelido &ndash;&gt;
                     <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -78,7 +391,7 @@
 
 
 
-            <!--Genero -->
+            &lt;!&ndash;Genero &ndash;&gt;
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -97,8 +410,8 @@
                     />
             </LinearLayout>
 
-            <!--ToDo separar em duas tabs isso aqui, informações pessoais e informações acadêmicas -->
-            <!--Dt_Nascimento -->
+            &lt;!&ndash;ToDo separar em duas tabs isso aqui, informações pessoais e informações acadêmicas &ndash;&gt;
+            &lt;!&ndash;Dt_Nascimento &ndash;&gt;
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -121,7 +434,7 @@
 
         </LinearLayout>
 
-        <!--Sessão Informações Acadêmicas -->
+        &lt;!&ndash;Sessão Informações Acadêmicas &ndash;&gt;
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -136,7 +449,7 @@
             >
 
 
-            <!--Curso -->
+            &lt;!&ndash;Curso &ndash;&gt;
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -155,7 +468,7 @@
                     />
             </LinearLayout>
 
-            <!--Ano -->
+            &lt;!&ndash;Ano &ndash;&gt;
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -177,14 +490,14 @@
         </LinearLayout>
 
 
-        <!--Sessão Informações Adicionais -->
+        &lt;!&ndash;Sessão Informações Adicionais &ndash;&gt;
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Informações Adicionais"
             />
 
-    <!--Separaçao de sessao pra colocar espacamento à esquera -->
+    &lt;!&ndash;Separaçao de sessao pra colocar espacamento à esquera &ndash;&gt;
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -194,7 +507,7 @@
             >
 
 
-            <!-- Bio -->
+            &lt;!&ndash; Bio &ndash;&gt;
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -211,7 +524,7 @@
                 android:inputType="textMultiLine" />
 
 
-            <!-- Moradias Anteriores -->
+            &lt;!&ndash; Moradias Anteriores &ndash;&gt;
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -252,6 +565,6 @@
             android:layout_marginBottom="40dp"
             />
 
-        <!--Fecha LinearLayout do scrollview -->
+        &lt;!&ndash;Fecha LinearLayout do scrollview &ndash;&gt;
     </LinearLayout>
-</ScrollView>
+</ScrollView>-->

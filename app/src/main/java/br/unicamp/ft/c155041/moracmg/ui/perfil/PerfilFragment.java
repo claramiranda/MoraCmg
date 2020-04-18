@@ -23,9 +23,7 @@ import br.unicamp.ft.c155041.moracmg.R;
 import br.unicamp.ft.c155041.moracmg.Usuario;
 
 public class PerfilFragment extends Fragment {
-
     private PerfilViewModel perfilViewModel;
-
     public final static String TAG = "PerfilFragment";
 
     Usuario usuario;
@@ -50,7 +48,7 @@ public class PerfilFragment extends Fragment {
     String uuid = mAuth.getUid();
 
 
-    //TODO fazer os role da foto no storage
+    //TODO FIREBASE: implementar Storage
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         perfilViewModel =
@@ -63,23 +61,23 @@ public class PerfilFragment extends Fragment {
         spinnerAno = view.findViewById(R.id.spinnerAno);
 
         txtDtNascimento = view.findViewById(R.id.edtTxtDtNascimento);
-        txtNome= view.findViewById(R.id.edtTxtUserNome);
-        txtApelido = view.findViewById(R.id.edtTxtUserNickname);
+        //txtNome= view.findViewById(R.id.edtTxtUserNome);
+       // txtApelido = view.findViewById(R.id.edtTxtUserNickname);
 
         txtCidadeNatal = view.findViewById(R.id.edtTxtUserCidadeNatal);
         txtBiografia = view.findViewById(R.id.edtTxtUserBio);
         txtMoradiasAnteriores = view.findViewById(R.id.edtTxtUserMoradiasAnteriores);
 
-        btnSalvar = view.findViewById(R.id.btnSalvarPerfil);
-        btnSalvar.setOnClickListener(new View.OnClickListener() {
+        //btnSalvar = view.findViewById(R.id.btnSalvarPerfil);
+/*        btnSalvar.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
                 BotaoSalvarUsuario(v);
             }
-        });
+        });*/
 
-        dbHandler.getUserFromDatabase(uuid);
+        /*dbHandler.getUserFromDatabase(uuid);
         usuario = dbHandler.getUsuario();
 
         if (usuario == null){
@@ -89,13 +87,11 @@ public class PerfilFragment extends Fragment {
         {
             Toast.makeText(getContext(), "Usuário not null",Toast.LENGTH_LONG).show();
             printUserOnLog(usuario);
-        }
-
-
+        }*/
 
         return view;
     }
-
+/*
     public void BotaoSalvarUsuario(View view){
 
         String curso = spinnerCurso.getSelectedItem().toString();
@@ -109,30 +105,30 @@ public class PerfilFragment extends Fragment {
         }
 
         String apelido = txtApelido.getText().toString();
-/*        if(TextUtils.isEmpty(apelido)) {
+*//*        if(TextUtils.isEmpty(apelido)) {
             //apelido = "Não informado";
             txtApelido.setError("Não");
             return;
-        }*/
+        }*//*
 
         String cidade = txtCidadeNatal.getText().toString();
-/*        if(TextUtils.isEmpty(cidade)) {
+*//*        if(TextUtils.isEmpty(cidade)) {
             cidade = "Não informado";
-        }*/
+        }*//*
 
         String bio = txtBiografia.getText().toString();
-/*        if(TextUtils.isEmpty(bio)) {
+*//*        if(TextUtils.isEmpty(bio)) {
             bio = "";
 
-        }*/
+        }*//*
 
 
 
         String moradias = txtMoradiasAnteriores.getText().toString();
-/*        if(TextUtils.isEmpty(moradias)) {
+*//*        if(TextUtils.isEmpty(moradias)) {
             txtMoradiasAnteriores.setError("Campo não informado.");
             return;
-        }*/
+        }*//*
 
 
         String dt_nascimento = txtDtNascimento.getText().toString();
@@ -154,9 +150,9 @@ public class PerfilFragment extends Fragment {
         //Valores atuais do campo são setados como Hint
         dbHandler.getUserFromDatabase(uuid);
         carregarDadosUsuario();
-    }
+    }*/
 
-    public void carregarDadosUsuario(){
+ /*   public void carregarDadosUsuario(){
 
         if(usuario.getNome() != "" ){
             //txtNome.setText(usuario.getNome());
@@ -185,16 +181,14 @@ public class PerfilFragment extends Fragment {
             txtCidadeNatal.setText("");
             txtCidadeNatal.setHint(usuario.getCidade_natal());
         }
-
-
     }
-
-    public void printUserOnLog(Usuario user){
+*/
+/*    public void printUserOnLog(Usuario user){
         Log.d(TAG, "user.nome=" + user.getNome());
         Log.d(TAG, "user.curso=" + user.getCurso());
         Log.d(TAG, "user.bio=" + user.getBiografia());
         Log.d(TAG, "user.moradias=" + user.getMoradias_anteriores());
         Log.d(TAG, "user.cidade=" + user.getCidade_natal());
-    }
+    }*/
 
 }

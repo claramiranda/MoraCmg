@@ -1,4 +1,4 @@
-package br.unicamp.ft.c155041.moracmg.ui.tools;
+package br.unicamp.ft.c155041.moracmg.ui.historico;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,17 +14,17 @@ import androidx.lifecycle.ViewModelProviders;
 
 import br.unicamp.ft.c155041.moracmg.R;
 
-public class ToolsFragment extends Fragment {
+public class HistoricoFragment extends Fragment {
 
-    private ToolsViewModel toolsViewModel;
+    private HistoricoViewModel historicoViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        toolsViewModel =
-                ViewModelProviders.of(this).get(ToolsViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_tools, container, false);
+        historicoViewModel =
+                ViewModelProviders.of(this).get(HistoricoViewModel.class);
+        View root = inflater.inflate(R.layout.fragment_historico, container, false);
         final TextView textView = root.findViewById(R.id.text_tools);
-        toolsViewModel.getText().observe(this, new Observer<String>() {
+        historicoViewModel.getText().observe(this, new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);

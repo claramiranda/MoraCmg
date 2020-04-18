@@ -29,6 +29,8 @@ public class MainActivity extends AppCompatActivity {
     public final static String TAG = "MainActivity";
 
     FirebaseUser user;
+    Usuario usuario = new Usuario();
+    DatabaseHandler dbHandler = new DatabaseHandler();
 
     private AppBarConfiguration mAppBarConfiguration;
     private TextView text_home;
@@ -41,9 +43,10 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
+
         mAppBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow,
-                R.id.nav_tools, R.id.nav_share, R.id.nav_send)
+                R.id.nav_historico, R.id.nav_share, R.id.nav_send)
                 .setDrawerLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
@@ -53,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
         //Meu codigo começa aqui:
         text_home = findViewById(R.id.text_home);
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
         if(user == null){
             Log.d(TAG, "user.getInstance:failure");
             printToast("Por favor faça login.");
@@ -62,7 +66,26 @@ public class MainActivity extends AppCompatActivity {
         }
         if (user != null ){
             Log.d(TAG, "user.getInstance:successful");
-            //text_home.setText(user.getEmail());
+            Log.d(TAG, "user: " + user);
+            String email = user.getEmail();
+            Log.d(TAG, "email: " + email);
+
+
+            String ra = usuario.calculaRA(email);
+            Log.d(TAG, "ra: " + ra);
+
+
+            //TODO Bug do Paralelismo: Aqui precisa resolver o bug do paralelismo pra continuar
+            /*
+            * Fluxo:
+            * Main activity recebe usuário do banco
+            * se tiver com os dados obrigatórios preenchidos, libera o acesso ao app
+            * se tiver com os dados obrigatorios em branco, é redirecionado pra Editar Perfil
+            *
+            * */
+            this.usuario = dbHandler.getUserFromDatabase(ra);
+            Log.d(TAG, "usuario.email: " + usuario.getEmail());
+
         }
     }
 
@@ -110,6 +133,5 @@ public class MainActivity extends AppCompatActivity {
 
     public void printToast(String msg){
         Toast.makeText(this, msg,Toast.LENGTH_LONG).show();
-
     }
 }

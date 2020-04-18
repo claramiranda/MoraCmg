@@ -16,12 +16,6 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-
-/*
-    TODO Trocar campo de validação do login (de e-mail para usuário DAC)
-*/
-
-
 public class LoginActivity extends AppCompatActivity {
 
     public final static String TAG = "LoginActivity";
@@ -66,13 +60,12 @@ public class LoginActivity extends AppCompatActivity {
                 printLog("updateUI:EmailVerifyFail");
             }
         }else {
-            //printToast("Usuário não cadastrado.");
+            printToast("Usuário não cadastrado.");
             printLog("updateUI:failure");
         }
     }
 
     public void signIn(String email, String password){
-
         if (email != null && password != null){
             mAuth.signInWithEmailAndPassword(email, password)
                     .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
@@ -114,7 +107,7 @@ public class LoginActivity extends AppCompatActivity {
 
         String email = edtEmail.getText().toString();
         String password = edtSenha.getText().toString();
-
+            email = email + "@dac.unicamp.br";
         if(email == null){
             printToast("E-mail não preenchido.");
         }
