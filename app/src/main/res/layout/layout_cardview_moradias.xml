@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!--TODO layout cardview moradia-->
+    <androidx.cardview.widget.CardView
+        android:layout_width="350dp"
+        app:cardCornerRadius="20dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="8dp"
+        app:cardBackgroundColor="@color/cardview_light_background"
+        android:id="@+id/cv_perfil_moradia">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:padding="8dp"
+            android:layout_height="wrap_content">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:id="@+id/foto_moradia"
+                android:src="@drawable/icon_house"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/txt_nome_card_moradia"
+                android:layout_toEndOf="@id/foto_moradia"
+                android:text="República Rota Alternativa"
+                android:textSize="20dp"
+                android:textStyle="bold"/>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/txt_qtd_moradores_card_moradia"
+                android:text="8 moradores"
+                android:layout_below="@id/txt_nome_card_moradia"
+                android:layout_toRightOf="@id/foto_moradia"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nivel de agitação: 4"
+                android:paddingStart="30dp"
+                android:layout_below="@id/txt_nome_card_moradia"
+                android:layout_toEndOf="@id/txt_qtd_moradores_card_moradia"
+                android:id="@+id/txt_agitacao_card_moradia"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Moradia Masculina"
+                android:layout_below="@id/txt_qtd_moradores_card_moradia"
+                android:layout_toRightOf="@id/foto_moradia"
+                android:id="@+id/txt_genero_card_moradia"/>
+
+            <TextView
+                android:id="@+id/txt_tipo_card_moradia"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/txt_agitacao_card_moradia"
+                android:layout_marginLeft="1dp"
+                android:layout_marginTop="0dp"
+                android:layout_toRightOf="@id/txt_genero_card_moradia"
+                android:paddingStart="16dp"
+                android:text="Tipo: República" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/txt_bio_card_moradia"
+                android:text="República mista, fundada em 2011, tradicionalmente dos cursos da FT. Vizinhos da Rep Hour, festeiros e maconheiros."
+                android:textStyle="italic"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="8dp"
+                android:textSize="10dp"
+                android:layout_below="@id/txt_genero_card_moradia"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/txt_referencia_localizacao_card_moradia"
+                android:text="Próximo à pizzaria Castelli, 5 min FT"
+                android:layout_marginTop="6dp"
+                android:layout_marginLeft="8dp"
+                android:textSize="12dp"
+                android:layout_below="@id/txt_bio_card_moradia"/>
+
+            <Button
+                android:id="@+id/button_perfil_moradia"
+                android:layout_width="80dp"
+                android:layout_height="50dp"
+                android:layout_below="@id/txt_bio_card_moradia"
+                android:layout_alignParentRight="true"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="0dp"
+                android:layout_marginRight="7dp"
+                android:text="Ver Perfil"
+                android:textSize="10dp" />
+
+
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>

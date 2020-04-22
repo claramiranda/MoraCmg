@@ -1,4 +1,4 @@
-package br.unicamp.ft.c155041.moracmg;
+package br.unicamp.ft.c155041.moracmg.classes;
 
 import android.util.Log;
 

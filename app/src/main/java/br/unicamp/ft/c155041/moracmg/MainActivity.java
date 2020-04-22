@@ -5,7 +5,6 @@ import android.os.Bundle;
 
 import android.util.Log;
 import android.view.MenuItem;
-import android.view.View;
 
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -24,6 +23,8 @@ import androidx.appcompat.widget.Toolbar;
 import android.view.Menu;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import br.unicamp.ft.c155041.moracmg.classes.Usuario;
 
 public class MainActivity extends AppCompatActivity {
     public final static String TAG = "MainActivity";

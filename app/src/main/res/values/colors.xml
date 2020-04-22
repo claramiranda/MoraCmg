@@ -5,10 +5,10 @@
     <color name="colorAccent">#D81B60</color>
 
 
-    <color name="cardview_light_background">#BBB888</color>
+    <color name="cardview_light_background">#4CAF50</color>
 
-    <color name="cardview_bg_masculina">#BBB888</color>
-    <color name="cardview_bg_mista">#BBB888</color>
-    <color name="cardview_bg_feminina">#BBB888</color>
+    <color name="cardview_bg_masculina">#80BDED</color>
+    <color name="cardview_bg_mista">#835EC6</color>
+    <color name="cardview_bg_feminina">#EA5F8E</color>
 
 </resources>
